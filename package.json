@@ -1,12 +1,18 @@
 {
   "name": "harvest-hub",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": "true",
+  "version": "0.0.1",
+  "description": "Harvest Hub Backend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-Gambler/harvest-hub"
+  },
   "keywords": [],
-  "author": "",
+  "author": [{"name":"Nathan Romero","url":"https://github.com/johanjordaan"},
+            {"name":"Layal Singh","url":"https://github.com/Nathan-Romero"},
+            {"name":"Steven David Pillay","url":"https://github.com/code-Gambler"}],
   "license": "ISC"
 }
