@@ -11,8 +11,22 @@
     "url": "git+https://github.com/code-Gambler/harvest-hub"
   },
   "keywords": [],
-  "author": [{"name":"Nathan Romero","url":"https://github.com/johanjordaan"},
-            {"name":"Layal Singh","url":"https://github.com/Nathan-Romero"},
-            {"name":"Steven David Pillay","url":"https://github.com/code-Gambler"}],
-  "license": "ISC"
+  "author": [
+    {
+      "name": "Nathan Romero",
+      "url": "https://github.com/johanjordaan"
+    },
+    {
+      "name": "Layal Singh",
+      "url": "https://github.com/Nathan-Romero"
+    },
+    {
+      "name": "Steven David Pillay",
+      "url": "https://github.com/code-Gambler"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.3.3"
+  }
 }
