@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "description": "Harvest Hub Backend",
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "lint": "eslint --config .eslintrc.js \"./src/**/*.js\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --config .eslintrc.js \"./src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,10 @@
     "eslint": "^9.8.0",
     "globals": "^15.9.0",
     "prettier": "3.3.3"
+  },
+  "dependencies": {
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
+    "pino-pretty": "^11.2.2"
   }
 }
