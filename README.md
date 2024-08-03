@@ -1,1 +1,2 @@
 # harvest-hub
+## TerraHacks Hackathon
