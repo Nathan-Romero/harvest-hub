@@ -55,6 +55,11 @@ app.get('/home', (req, res) => {
   res.sendFile('./views/index.html', { root: __dirname });
 });
 
+app.get('/plants', (req, res) => {
+  // Send a 200 'OK' response with info about our repo
+  res.sendFile('./views/plants.html', { root: __dirname });
+});
+
 app.get('/', (req, res) => {
   // Send a 200 'OK' response with info about our repo
   res.redirect('/home');
