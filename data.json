@@ -1,0 +1,31 @@
+[
+  {
+    "id": 0,
+    "name": "Carrots",
+    "rarity": "Common",
+    "soil": "Light Sandy Loam",
+    "water": {
+      "level": "1",
+      "message": "1-2 in. per week"
+    },
+    "temperature": {
+      "lowerLimit": 60,
+      "upperLimit": 75
+    },
+    "space": 0.013,
+    "depth": 0.006,
+    "planting": "2-3 weeks before the last spring frost date",
+    "harvest": {
+      "upperLimit": 80,
+      "lowerLimit": 60,
+      "message": "60-80 days after sowing seeds"
+    },
+    "season": "Spring",
+    "techniquesTips": "Loosen the soil Use a fork or trowel",
+    "companions": [
+      1,
+      4,
+      3
+    ]
+  }
+]
