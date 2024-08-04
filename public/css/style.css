@@ -62,3 +62,19 @@ a{
   box-sizing: border-box;
   line-height: var(--bs-body-line-height);
 }
+.container{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+#small{
+  background-color: #ffffff70;
+  padding: 3%;
+}
+.topic{
+  font-weight: 600;
+}
+li{
+  padding: 4px;
+}
