@@ -50,3 +50,15 @@ nav {
 a{
   text-decoration: none;
 }
+.details{
+  background-color: #ebe5ddb3;
+  justify-content: center;
+  align-items: center;
+  margin: 20% auto;
+  max-width: 787px;
+}
+.col{
+  padding: 9px;
+  box-sizing: border-box;
+  line-height: var(--bs-body-line-height);
+}
