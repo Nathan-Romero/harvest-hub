@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --config .eslintrc.js \"./src/**/*.js\"",
-    "start": "node src/server.js",
+    "start": "node src/index.js",
     "dev": "LOG_LEVEL=debug nodemon ./src/server.js --watch src",
     "debug": "LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/server.js --watch src"
   },
@@ -44,11 +44,15 @@
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-handlebars": "^7.1.3",
     "helmet": "^7.1.0",
+    "mongoose": "^8.5.2",
     "pino": "^9.3.2",
     "pino-http": "^10.2.0",
     "pino-pretty": "^11.2.2",
-    "stoppable": "^1.1.0"
+    "stoppable": "^1.1.0",
+    "strip-js": "^1.2.0"
   }
 }

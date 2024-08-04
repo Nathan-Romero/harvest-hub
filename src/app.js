@@ -4,12 +4,19 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const exphbs = require("express-handlebars");
+const stripJs = require("strip-js");
+const path = require('path');
+
+// Get our logger instance
+const logger = require('./logger');
+
+// Get the desired port from the process' environment. Default to `8080`
+const port = parseInt(process.env.PORT || '8080', 10);
 
 // author and version from our package.json file
-// TODO: make sure you have updated your name in the `author` section
 const { author, version } = require('../package.json');
 
-const logger = require('./logger');
 const pino = require('pino-http')({
   // Use our default logger instance, which is already configured
   logger,
@@ -30,7 +37,49 @@ app.use(cors());
 // Use gzip/deflate compression middleware
 app.use(compression());
 
+
+app.engine(".hbs", exphbs.engine({ extname: ".hbs" }));
+app.set("view engine", ".hbs");
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
+
+app.engine(
+  ".hbs",
+  exphbs.engine({
+    extname: ".hbs",
+    helpers: {
+      navLink: function (url, options) {
+        return (
+          "<li" +
+          (url == app.locals.activeRoute ? ' class="btn active" ' : "") +
+          '><a href="' +
+          url +
+          '">' +
+          options.fn(this) +
+          "</a></li>"
+        );
+      },
+      equal: function (lvalue, rvalue, options) {
+        if (arguments.length < 3)
+          throw new Error("Handlebars Helper equal needs 2 parameters");
+        if (lvalue != rvalue) {
+          return options.inverse(this);
+        } else {
+          return options.fn(this);
+        }
+      },
+      safeHTML: function (context) {
+        return stripJs(context);
+      },
+      formatDate: function (dateObj) {
+        let year = dateObj.getFullYear();
+        let month = (dateObj.getMonth() + 1).toString();
+        let day = dateObj.getDate().toString();
+        return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+      },
+    },
+  })
+);
 
 // Define a simple health check route. If the server is running
 // we'll respond with a 200 OK.  If not, the server isn't healthy.
@@ -52,12 +101,17 @@ app.get('/health-check', (req, res) => {
 // we'll respond with a 200 OK.  If not, the server isn't healthy.
 app.get('/home', (req, res) => {
   // Send a 200 'OK' response with info about our repo
-  res.sendFile('./views/index.html', { root: __dirname });
+  res.render("index", {});
 });
 
 app.get('/plants', (req, res) => {
+  const plants = [
+    { name: 'Tomato', image: '/images/tomato.avif', season: 'Summer' },
+    { name: 'Carrot', image: '/images/carrot.avif', season: 'Spring' },
+    { name: 'Pumpkin', image: '/images/pumpkin.jpg', season: 'Fall' },
+  ];
   // Send a 200 'OK' response with info about our repo
-  res.sendFile('./views/plants.html', { root: __dirname });
+  res.render("plants", { plants });
 });
 
 app.get('/', (req, res) => {
@@ -98,5 +152,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Export our `app` so we can access it in server.js
-module.exports = app;
+
+
+app.listen(port, () => {
+  // Log a message that the server has started, and which port it's using.
+  logger.info(`Server started on port ${port}`);
+});
