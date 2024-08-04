@@ -22,3 +22,31 @@ nav {
 .leaves {
   margin: -36px;
 }
+
+#Info{
+  font-family: var(--bs-body-font-family);
+  width: 617px;
+  display: inline-block;
+}
+#catchPhrase{
+  color: rgb(18 31 82);
+  font-size: 50px;
+  margin: 3px 0px;
+}
+.textAndImage{
+  padding: 0px 111px;
+  margin: 7% 12%;
+}
+
+#lady{
+  float: left;
+}
+
+#plantButton{
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb(0 0 0 / 5%);
+  display: block;
+  margin: auto;
+}
+a{
+  text-decoration: none;
+}
