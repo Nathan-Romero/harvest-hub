@@ -70,25 +70,7 @@ app.engine(
           options.fn(this) +
           '</a>'
         );
-      },
-      equal: function (lvalue, rvalue, options) {
-        if (arguments.length < 3)
-          throw new Error("Handlebars Helper equal needs 2 parameters");
-        if (lvalue != rvalue) {
-          return options.inverse(this);
-        } else {
-          return options.fn(this);
-        }
-      },
-      safeHTML: function (context) {
-        return stripJs(context);
-      },
-      formatDate: function (dateObj) {
-        let year = dateObj.getFullYear();
-        let month = (dateObj.getMonth() + 1).toString();
-        let day = dateObj.getDate().toString();
-        return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-      },
+      }
     },
   })
 );
@@ -151,6 +133,11 @@ app.get('/plants/:id', async (req, res) => {
       },
     });
   }
+});
+
+// Tips route
+app.get('/tips', (req, res) => {
+  res.render('tips'); // Your tips view
 });
 
 app.get('/', (req, res) => {

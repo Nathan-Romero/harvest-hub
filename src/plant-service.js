@@ -21,7 +21,8 @@ const schema = new mongoose.Schema({
   },
   season: String,
   techniquesTips: String,
-  companions: [Number]
+  companions: [Number],
+  image: String
 });
 
 let plantData;

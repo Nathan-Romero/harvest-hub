@@ -1,13 +1,12 @@
     <div class='container'>
-      <h1 style='text-align: center'>{{plant.name}}</h1>
-      <!-- Image Card -->
-      <div class='card mb-3' style='width: 100%; max-width: 540px; margin-bottom: 10px; border-radius: 10px; overflow: hidden; display: flex; justify-content: center;'>
-        <div class='row no-gutters' style='display: flex; justify-content: center;'>
+      <h1>{{plant.name}}</h1>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
           <div class='col-md-12'>
             <img
               src='{{#if plant.image}}{{plant.image}}{{else}}/images/carrot.avif{{/if}}'
               alt='{{plant.name}}'
-              style='width: 100%; height: auto; border-radius: 10px; max-width: 100%;'
+              class='img-fluid'
             />
           </div>
         </div>
