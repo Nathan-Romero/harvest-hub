@@ -30,9 +30,11 @@ app.use(cors());
 // Use gzip/deflate compression middleware
 app.use(compression());
 
+app.use(express.static("public"));
+
 // Define a simple health check route. If the server is running
 // we'll respond with a 200 OK.  If not, the server isn't healthy.
-app.get('/', (req, res) => {
+app.get('/health-check', (req, res) => {
   // Clients shouldn't cache this response (always request it fresh)
   // See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#controlling_caching
   res.setHeader('Cache-Control', 'no-cache');
@@ -44,6 +46,18 @@ app.get('/', (req, res) => {
     githubUrl: 'https://github.com/code-Gambler/fragments',
     version,
   });
+});
+
+// Define a simple health check route. If the server is running
+// we'll respond with a 200 OK.  If not, the server isn't healthy.
+app.get('/home', (req, res) => {
+  // Send a 200 'OK' response with info about our repo
+  res.sendFile('./views/index.html', { root: __dirname });
+});
+
+app.get('/', (req, res) => {
+  // Send a 200 'OK' response with info about our repo
+  res.redirect('/home');
 });
 
 // Add 404 middleware to handle any requests for resources that can't be found
