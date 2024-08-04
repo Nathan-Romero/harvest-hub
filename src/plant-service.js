@@ -51,3 +51,13 @@ module.exports.getPlants = function () {
     });
   });
 }
+
+module.exports.getPlantById = function (id) {
+  return new Promise(function (resolve, reject) {
+    plantData.findById(id).lean().exec().then((plants) => {
+      resolve(plants);
+    }).catch((err) => {
+      reject(err);
+    });
+  });
+}

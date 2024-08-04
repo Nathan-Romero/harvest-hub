@@ -1,21 +1,19 @@
-<div class='container'>
-  <div class='list-group'>
-    {{#each dbPlants}}
-      <a href='#' class='list-group-item list-group-item-action'>
-        <div class='d-flex align-items-center'>
-          <img
-            src='{{this.image}}'
-            class='rounded-circle'
-            alt='{{this.name}}'
-            style='width: 60px; height: 60px; object-fit: cover; margin-right: 20px;'
-          />
-          <div>
-            <h5 class='mb-1'>{{this.name}}</h5>
-            <p class='mb-1'><strong>Season:</strong> {{this.season}}</p>
-            <p class='mb-1'><strong>Rarity:</strong> {{this.rarity}}</p>
-          </div>
+<div class='list-group'>
+  {{#each dbPlants}}
+    <a href='/plants/{{this._id}}' class='list-group-item list-group-item-action'>
+      <div class='d-flex align-items-center'>
+        <img
+          src='{{this.image}}'
+          class='rounded-circle'
+          alt='{{this.name}}'
+          style='width: 60px; height: 60px; object-fit: cover; margin-right: 20px;'
+        />
+        <div>
+          <h5 class='mb-1'>{{this.name}}</h5>
+          <p class='mb-1'><strong>Season:</strong> {{this.season}}</p>
+          <p class='mb-1'><strong>Rarity:</strong> {{this.rarity}}</p>
         </div>
-      </a>
-    {{/each}}
-  </div>
+      </div>
+    </a>
+  {{/each}}
 </div>

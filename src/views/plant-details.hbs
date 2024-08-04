@@ -1,0 +1,111 @@
+    <div class='container'>
+      <h1 style='text-align: center'>{{plant.name}}</h1>
+      <!-- Image Card -->
+      <div class='card mb-3' style='width: 100%; max-width: 540px; margin-bottom: 10px; border-radius: 10px; overflow: hidden; display: flex; justify-content: center;'>
+        <div class='row no-gutters' style='display: flex; justify-content: center;'>
+          <div class='col-md-12'>
+            <img
+              src='{{#if plant.image}}{{plant.image}}{{else}}/images/carrot.avif{{/if}}'
+              alt='{{plant.name}}'
+              style='width: 100%; height: auto; border-radius: 10px; max-width: 100%;'
+            />
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Rarity:</strong> {{plant.rarity}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Season:</strong> {{plant.season}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Soil:</strong> {{plant.soil}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Water Level:</strong> {{plant.water.level}}</p>
+              <p class='card-text'><strong>Water Message:</strong> {{plant.water.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'>
+                <strong>Temperature Range:</strong>
+                {{plant.temperature.lowerlimit}} - {{plant.temperature.upperlimit}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Space:</strong> {{plant.space}}</p>
+              <p class='card-text'><strong>Depth:</strong> {{plant.depth}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Planting:</strong> {{plant.planting}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Harvest:</strong> {{plant.harvest.lowerlimit}} - {{plant.harvest.upperlimit}}</p>
+              <p class='card-text'><strong>Harvest Message:</strong> {{plant.harvest.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Techniques and Tips:</strong> {{plant.techniquesTips}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card mb-3'>
+        <div class='row no-gutters'>
+          <div class='col-md-12'>
+            <div class='card-body'>
+              <p class='card-text'><strong>Companions:</strong> {{plant.companions}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

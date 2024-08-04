@@ -133,6 +133,26 @@ app.get('/plants', (req, res) => {
   });
 });
 
+// Route to handle requests for individual plant details
+app.get('/plants/:id', async (req, res) => {
+  try {
+    const plant = await plantData.getPlantById(req.params.id);
+    if (plant) {
+      res.render("plant-details", { plant });
+    } else {
+      res.status(404).render("404", { message: 'Plant not found' });
+    }
+  } catch (err) {
+    res.status(500).json({
+      status: 'error',
+      error: {
+        message: 'Failed to fetch plant details',
+        code: 500,
+      },
+    });
+  }
+});
+
 app.get('/', (req, res) => {
   // Send a 200 'OK' response with info about our repo
   res.redirect('/home');
