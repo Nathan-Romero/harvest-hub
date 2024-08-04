@@ -19,9 +19,12 @@
       <div class='container-fluid'>
         <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
           <div class='navbar-nav'>
-            <a class='nav-link active' aria-current='page' href='/home'>Home</a>
+            {{#navLink '/home'}}Home{{/navLink}}
+            {{#navLink '/plants'}}Plants{{/navLink}}
+            {{#navLink '/tips'}}Tips{{/navLink}}
+            {{! <a class='nav-link active' aria-current='page' href='/home'>Home</a>
             <a class='nav-link' href='/plants'>Plants</a>
-            <a class='nav-link' href='#'>Tips</a>
+            <a class='nav-link' href='#'>Tips</a> }}
           </div>
           <a class='navbar-brand' href='#'><img
               src='./images/leaf--nature-environment-leaf-ecology-plant-plants-eco.svg'

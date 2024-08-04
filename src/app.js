@@ -44,6 +44,16 @@ app.engine(".hbs", exphbs.engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
+app.use(function (req, res, next) {
+  let route = req.path.substring(1);
+  app.locals.activeRoute =
+    "/" +
+    (isNaN(route.split("/")[1])
+      ? route.replace(/\/(?!.*)/, "")
+      : route.replace(/\/(.*)/, ""));
+  app.locals.viewingCategory = req.query.category;
+  next();
+});
 
 app.engine(
   ".hbs",
@@ -52,13 +62,13 @@ app.engine(
     helpers: {
       navLink: function (url, options) {
         return (
-          "<li" +
-          (url == app.locals.activeRoute ? ' class="btn active" ' : "") +
-          '><a href="' +
+          '<a' +
+          (url == app.locals.activeRoute ? ' class="nav-link active" ' : ' class="nav-link"') +
+          ' href="' +
           url +
           '">' +
           options.fn(this) +
-          "</a></li>"
+          '</a>'
         );
       },
       equal: function (lvalue, rvalue, options) {
@@ -109,14 +119,6 @@ app.get('/home', (req, res) => {
 app.get('/plants', (req, res) => {
   plantData.getPlants().then((dbPlants) => {
     logger.info(`Returning ${dbPlants.length} plants`);
-    logger.info(`Returning ${dbPlants[0].name} plants`);
-    logger.info({ dbPlants }, `Returning plants`);
-    // const plants = [
-    //   { name: 'Tomato', image: '/images/tomato.avif', season: 'Summer' },
-    //   { name: 'Carrot', image: '/images/carrot.avif', season: 'Spring' },
-    //   { name: 'Pumpkin', image: '/images/pumpkin.jpg', season: 'Fall' },
-    // ];
-    // Send a 200 'OK' response with info about our repo
 
     res.render("plants", { dbPlants });
   }).catch((err) => {
