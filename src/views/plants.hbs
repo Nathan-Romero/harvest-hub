@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='list-group'>
-    {{#each plants}}
+    {{#each dbPlants}}
       <a href='#' class='list-group-item list-group-item-action'>
         <div class='d-flex align-items-center'>
           <img
@@ -12,6 +12,7 @@
           <div>
             <h5 class='mb-1'>{{this.name}}</h5>
             <p class='mb-1'><strong>Season:</strong> {{this.season}}</p>
+            <p class='mb-1'><strong>Rarity:</strong> {{this.rarity}}</p>
           </div>
         </div>
       </a>

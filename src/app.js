@@ -7,6 +7,8 @@ const compression = require('compression');
 const exphbs = require("express-handlebars");
 const stripJs = require("strip-js");
 const path = require('path');
+require('dotenv').config();
+const plantData = require('./plant-service');
 
 // Get our logger instance
 const logger = require('./logger');
@@ -105,13 +107,28 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/plants', (req, res) => {
-  const plants = [
-    { name: 'Tomato', image: '/images/tomato.avif', season: 'Summer' },
-    { name: 'Carrot', image: '/images/carrot.avif', season: 'Spring' },
-    { name: 'Pumpkin', image: '/images/pumpkin.jpg', season: 'Fall' },
-  ];
-  // Send a 200 'OK' response with info about our repo
-  res.render("plants", { plants });
+  plantData.getPlants().then((dbPlants) => {
+    logger.info(`Returning ${dbPlants.length} plants`);
+    logger.info(`Returning ${dbPlants[0].name} plants`);
+    logger.info({ dbPlants }, `Returning plants`);
+    // const plants = [
+    //   { name: 'Tomato', image: '/images/tomato.avif', season: 'Summer' },
+    //   { name: 'Carrot', image: '/images/carrot.avif', season: 'Spring' },
+    //   { name: 'Pumpkin', image: '/images/pumpkin.jpg', season: 'Fall' },
+    // ];
+    // Send a 200 'OK' response with info about our repo
+
+    res.render("plants", { dbPlants });
+  }).catch((err) => {
+    logger.error({ err }, `Error getting plants`);
+    res.status(500).json({
+      status: 'error',
+      error: {
+        message: 'unable to process request',
+        code: 500,
+      },
+    });
+  });
 });
 
 app.get('/', (req, res) => {
@@ -153,8 +170,12 @@ app.use((err, req, res, next) => {
 });
 
 
-
-app.listen(port, () => {
-  // Log a message that the server has started, and which port it's using.
-  logger.info(`Server started on port ${port}`);
+plantData.initialize().then(() => {
+  app.listen(port, () => {
+    // Log a message that the server has started, and which port it's using.
+    logger.info(`Server started on port ${port}`);
+  });
+}).catch((err) => {
+  logger.error({ err }, `Error initializing DB`);
+  process.exit(1);
 });

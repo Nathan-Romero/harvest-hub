@@ -24,34 +24,27 @@ const schema = new mongoose.Schema({
   companions: [Number]
 });
 
-let plants;
+let plantData;
 
-module.exports.initialize = async function () {
-  try {
-    const db = await mongoose.createConnection(
-      process.env.MONGODB_URI || "mongodb://localhost:27017/harvest-hub",
-      { useNewUrlParser: true, useUnifiedTopology: true }
-    );
-
-    db.on('error', (err) => {
-      throw new Error(err); // throw the error to be caught by the catch block
+module.exports.initialize = function () {
+  return new Promise(function (resolve, reject) {
+    mongoose.connect(process.env.MONGO_URI).then(() => {
+      console.log("Connected to the database:");
+      plantData = mongoose.model("plants", schema);
+      plantData.find({}).lean().exec().then((items) => {
+        console.log("Database contains " + items.length + " plants.");
+        resolve();
+      });
+    }).catch((err) => {
+      console.log("Error connecting to the database:");
+      reject(err);
     });
-
-    await new Promise((resolve) => {
-      db.once('open', resolve);
-    });
-
-    const database = db.useDb("harvest-hub");
-    plants = database.collection("plants");
-    return true; // Resolve the promise indicating successful initialization
-  } catch (err) {
-    throw new Error(`Failed to initialize the database: ${err.message}`);
-  }
+  });
 };
 
 module.exports.getPlants = function () {
   return new Promise(function (resolve, reject) {
-    plants.toArray().then((plants) => {
+    plantData.find({}).lean().exec().then((plants) => {
       resolve(plants);
     }).catch((err) => {
       reject(err);
